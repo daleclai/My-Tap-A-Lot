@@ -16,6 +16,8 @@ A game website where you tap a button, earn points for each click, and compete w
 
 Want to play a fun game with friends to compete to see who can tap the most? Then get Tap-a-Lot, a simple, yet fun game about tapping a button and seeing whom among you can do it the most! Tap a lot of times and unlock fun button skins and backgrounds to elevate your experience. Login with your name and email to save your points and skins. See how you rank among oyur friends and everyone who has played before. 
 
+
+
 > [!NOTE]
 > Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
@@ -27,13 +29,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 - [ ] Description of how you will use each technology
 - [ ] One or more rough sketches of your application. Images must be embedded in this file using Markdown image references.
 
-### Elevator pitch
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 ### Design
 
-![Design image](placeholder.png)
+[Design image](tapalot.jpg)
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 

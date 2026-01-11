@@ -42,8 +42,8 @@ sequenceDiagram
     actor Joe
     actor Website
     Bob->>Website: Bob tap:1000
-    Bill->>Website: Bob tap:3050
-    Joe->>Website: Bob tap:4444
+    Bill->>Website: Bill tap:3050
+    Joe->>Website: Joe tap:4444
     Website-->>Bob: 3rd place:1000 
     Website-->>Bill: 2nd place:3030
     Website-->>Joe: 1st place:4444

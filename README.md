@@ -4,11 +4,6 @@
 
 A game website where you tap a button, earn points for each click, and compete with friends. You can exchange points for different button skins and backgrounds. Create an account (email and name) to store scores and skins and so your name can be ranked on the website. Rankings show ranking, name, and points (diff colors). There will be three tabs, "Tap", "Store", and "Rankings" on the bottom and a 'settings' tab in the top right corner. 
 
-> [!NOTE]
-> This is a template for your startup application. You must modify this `README.md` file for each phase of your development. You only need to fill in the section for each deliverable when that deliverable is submitted in Canvas. Without completing the section for a deliverable, the TA will not know what to look for when grading your submission. Feel free to add additional information to each deliverable description, but make sure you at least have the list of rubric items and a description of what you did for each item.
-
-> [!NOTE]
-> If you are not familiar with Markdown then you should review the [documentation](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax) before continuing.
 
 ## 🚀 Specification Deliverable
 
@@ -17,9 +12,6 @@ A game website where you tap a button, earn points for each click, and compete w
 Want to play a fun game with friends to compete to see who can tap the most? Then get Tap-a-Lot, a simple, yet fun game about tapping a button and seeing whom among you can do it the most! Tap a lot of times and unlock fun button skins and backgrounds to elevate your experience. Login with your name and email to save your points and skins. See how you rank among oyur friends and everyone who has played before. 
 
 
-
-> [!NOTE]
-> Fill in this sections as the submission artifact for this deliverable. You can refer to this [example](https://github.com/webprogramming260/startup-example/blob/main/README.md) for inspiration.
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
@@ -31,7 +23,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 ### Design
 
-![sketch](tapalot.png)
+![pg1-main](tapfirstimage.png)
+![pg2-store](tapsecondimage.png)
+![pg3-rank](tapthirdimage.png)
 
 ```mermaid
 sequenceDiagram

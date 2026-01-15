@@ -10,8 +10,12 @@
 
 ## AWS
 
-My IP address is: 54.81.96.130
-Launching my AMI I initially put it on a private subnet. Even though it had a public IP address and the security group was right, I wasn't able to connect to it.
+My IP address is: 34.237.100.40
+Create EC2, then register domain name, then create a hosted zone to make it run.
+In terminal: ssh -i C:\Users\clair\OneDrive\Desktop\cs260\tapalotcs260.pem ubuntu@tapalot.click
+vi Caddyfile
+save/exit by ESC then :wq
+make sure to add sudo service caddy restart
 
 ## Terminal stuff
 cd - change directory

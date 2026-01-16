@@ -16,6 +16,7 @@ In terminal: ssh -i C:\Users\clair\OneDrive\Desktop\cs260\tapalotcs260.pem ubunt
 vi Caddyfile
 save/exit by ESC then :wq
 make sure to add sudo service caddy restart
+my website: https://tapalot.click/
 
 ## Terminal stuff
 cd - change directory

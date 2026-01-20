@@ -32,6 +32,7 @@ Have 10 commits a assignment
 No problems worked just like it said in the [instruction](https://github.com/webprogramming260/.github/blob/main/profile/webServers/https/https.md).
 
 ## HTML
+
 ### Basic
 I learned a lot. I learned to use code in the this format < ></ >. (HINT: type div (or another tag) then click tab for it to auto complete. I further learned about: html (page container), head, title, script(javascript ref), body, header, footer, nav, main, span, h<1-9>, p, b, table, tr(table row), th(table header), td(table data), ol(ordered list), ul(unordered list), li (list item), and many more (refer to helpful links).
 
@@ -45,17 +46,17 @@ This was easy. I was careful to use the correct structural elements such as head
 The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
 
 ### Inputs
-Label for "text", "password", "email", "textarea", "select", "optgroup", "checkbox" and etc to include inputs from the user. 
-
-For text, password, and email, include "input type=", "id=", "name=", and "placeholder=".
-
-For Select and optgroup include "select id=" and "name=", and "option#" or "optgroup label=".
-
-For checkbox and radio include "label for=", "input type=", "id=", "name=". and "value=".
-
-Input and label type for: file, search, tel, URL, number, etc.
-
-[Input Examples](https://codepen.io/claire_lin123/pen/NPrjXep)
+- Label for "text", "password", "email", "textarea", "select", "optgroup", "checkbox" and etc to include inputs from the user.
+  
+- For text, password, and email, include "input type=", "id=", "name=", and "placeholder=".
+  
+- For Select and optgroup include "select id=" and "name=", and "option#" or "optgroup label=".
+  
+- For checkbox and radio include "label for=", "input type=", "id=", "name=". and "value=".
+  
+- Input and label type for: file, search, tel, URL, number, etc.
+  
+- [Input Examples](https://codepen.io/claire_lin123/pen/NPrjXep)
 
 ## CSS
 

@@ -46,10 +46,15 @@ The part I didn't like was the duplication of the header and footer code. This i
 
 ### Inputs
 Label for "text", "password", "email", "textarea", "select", "optgroup", "checkbox" and etc to include inputs from the user. 
+
 For text, password, and email, include "input type=", "id=", "name=", and "placeholder=".
+
 For Select and optgroup include "select id=" and "name=", and "option#" or "optgroup label=".
+
 For checkbox and radio include "label for=", "input type=", "id=", "name=". and "value=".
+
 Input and label type for: file, search, tel, URL, number, etc.
+
 [Input Examples](https://codepen.io/claire_lin123/pen/NPrjXep)
 
 ## CSS

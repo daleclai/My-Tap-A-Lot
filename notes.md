@@ -33,7 +33,7 @@ No problems worked just like it said in the [instruction](https://github.com/web
 
 ## HTML
 
-I learned a lot. I learned to use code in the this format (<div></div>). (HINT: type div (or another tag) then click tab for it to auto complete. I further learned about: html (page container), head, title, script(javascript ref), body, header, footer, nav, main, span, h<1-9>, p, b, table, tr(table row), th(table header), td(table data), ol(ordered list), ul(unordered list), li (list item), and many more (refer to helpful links).
+I learned a lot. I learned to use code in the this format <tags></tags>. (HINT: type div (or another tag) then click tab for it to auto complete. I further learned about: html (page container), head, title, script(javascript ref), body, header, footer, nav, main, span, h<1-9>, p, b, table, tr(table row), th(table header), td(table data), ol(ordered list), ul(unordered list), li (list item), and many more (refer to helpful links).
 I learned how to add an image (img src="image.jpg" alt="BYU  Cougar" width="100" height="100">) and add a hyperlink (a href="https://byu.edu">BYU - what will show up on page</a>).
 Some helpful links: [HTML tags](https://developer.mozilla.org/en-US/docs/Web/HTML) and [HTML Standard](https://html.spec.whatwg.org/multipage/).
 This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.

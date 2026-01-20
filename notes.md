@@ -41,21 +41,13 @@ I learned how to add an image (img src="image.jpg" alt="BYU  Cougar" width="100"
 Some helpful links: [HTML tags](https://developer.mozilla.org/en-US/docs/Web/HTML) and [HTML Standard](https://html.spec.whatwg.org/multipage/).
 
 [Basic HTML example](https://codepen.io/claire_lin123/pen/pvbPpER)
-This was easy. I was careful to use the correct structural elements such as header, footer, main, nav, and form. The links between the three views work great using the `a` element.
-
-The part I didn't like was the duplication of the header and footer code. This is messy, but it will get cleaned up when I get to React.
 
 ### Inputs
 - Label for "text", "password", "email", "textarea", "select", "optgroup", "checkbox" and etc to include inputs from the user.
-  
-- For text, password, and email, include "input type=", "id=", "name=", and "placeholder=".
-  
-- For Select and optgroup include "select id=" and "name=", and "option#" or "optgroup label=".
-  
-- For checkbox and radio include "label for=", "input type=", "id=", "name=". and "value=".
-  
-- Input and label type for: file, search, tel, URL, number, etc.
-  
+- For text, password, and email, include "input type=", "id=", "name=", and "placeholder=".  
+- For Select and optgroup include "select id=" and "name=", and "option#" or "optgroup label=". 
+- For checkbox and radio include "label for=", "input type=", "id=", "name=". and "value=".  
+- Input and label type for: file, search, tel, URL, number, etc.  
 - [Input Examples](https://codepen.io/claire_lin123/pen/NPrjXep)
 
   ### Media

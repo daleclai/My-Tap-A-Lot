@@ -70,8 +70,8 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **HTML pages** - I did not complete this part of the deliverable.
-- [ ] **Proper HTML element usage** - I did not complete this part of the deliverable.
+- [ ] **HTML pages** - I have four pages; the main page, the store, the rankings, and the setting page.
+- [ ] **Proper HTML element usage** - I added head, header, footer, body, p (paragraph), images, hyperlinks, buttons and div classes so i can easily define sections and refer to them in CSS. In my settings, i included inputs for email and passwords.
 - [ ] **Links** - I did not complete this part of the deliverable.
 - [ ] **Text** - I did not complete this part of the deliverable.
 - [ ] **3rd party API placeholder** - I did not complete this part of the deliverable.

@@ -26,6 +26,8 @@ status - differences btw clones
 pull - verify you have the latest code
 git commit then git push to commit code and add to GitHub
 Have 10 commits a assignment
+use this to update the website:
+$ ./deployFiles.sh -k "C:\Users\clair\OneDrive\Desktop\cs260\tapalotcs260.pem" -h tapalot.click -s startup
 
 ## Caddy
 

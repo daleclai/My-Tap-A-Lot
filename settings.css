@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: linear-gradient(to bottom,  #4a90e2 0%, #2e6db7 100%);
+    min-height: 80vh;
+    padding-bottom: 90px;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    gap: 15px;
+}
+

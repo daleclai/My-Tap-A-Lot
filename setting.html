@@ -3,7 +3,11 @@
 <head>
     <meta charset="utf-8">
     <title>Settings</title>
+    <link rel="stylesheet" href="settings.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+<body>
 
 <header>
     <h1>Settings</h1>
@@ -13,19 +17,26 @@
     <a href="index.html">Return</a>
 </header>
 
-<body>
+<main>
     <p>Create an account to save your taps!</p>
-    <li>
-        <label for="email">Email: </label>
-        <input type="email" id="email" name="varEmail" />
-    </li>
 
-    <li>
-        <label for="password">Password: </label>
-        <input type="password" id="password" name="varPassword" />
-    </li>
-    <button type="submit">Login</button>
-    <button type="submit">Create</button>
+    <form>
+        <ul>
+            <li>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="varEmail" required>
+            </li>
+
+            <li>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="varPassword" required>
+            </li>
+        </ul>
+
+        <button type="submit" class="submit">Login</button>
+        <button type="button" class="submit">Create</button>
+    </form>
+</main>
+
 </body>
-
 </html>

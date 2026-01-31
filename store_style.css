@@ -282,35 +282,3 @@ footer a {
     background: linear-gradient(to bottom, #7ed321 0%, #5aa70a 100%);
 }
 
-@media (max-width: 768px) {
-    .storeheader {
-        font-size: 24px;
-    }
-    
-    .points_available {
-        font-size: 18px;
-    }
-    
-    .buy_buttons h2,
-    .buy_backgrounds h2 {
-        font-size: 18px;
-    }
-    
-    .options {
-        width: 80px;
-        height: 80px;
-        font-size: 14px;
-        margin: 4px;
-    }
-    
-    .nav {
-        padding: 10px 15px;
-        font-size: 14px;
-        height: 100px;
-        max-width: 150px;
-    }
-    
-    .bottom-nav {
-        padding: 8px;
-    }
-}

@@ -120,9 +120,10 @@ h1 {
     margin: 20px;
 }
 
-h2 {
+h3 {
     color: whitesmoke;
     font-family: "Kalam", cursive;
+    font-size: min(2rem, 5vw);
   }
 
 .big-red-button:hover {

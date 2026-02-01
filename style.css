@@ -1,3 +1,5 @@
+@import url('https://www.1001fonts.com/cartoon+comic-fonts.html');
+
 * {
     margin: 0;
     padding: 0;
@@ -10,6 +12,12 @@ body {
     height: 100vh;
     min-height: 100vh;
     width: 100%;
+}
+
+h1 {
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .game {
@@ -86,7 +94,6 @@ body {
 }
 
 .big-red-button {
-  /* CHANGED: use max-size so it shrinks on phones */
   width: min(220px, 60vw);
   height: min(220px, 60vw);
 
@@ -97,6 +104,7 @@ body {
     #ff6b6b,
     #e60000 70%
   );
+  
 
 
   border: 8px solid #b3b3b3;
@@ -111,6 +119,11 @@ body {
   transition: transform 0.08s ease, box-shadow 0.08s ease;
     margin: 20px;
 }
+
+h2 {
+    color: whitesmoke;
+    font-family: "Kalam", cursive;
+  }
 
 .big-red-button:hover {
     transform: scale(1.05);

@@ -85,7 +85,7 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **Visually appealing colors and layout. No overflowing elements.** - Yes, I used linear gradient to make the background visually appealing. 
-- [x] **Use of a CSS framework** - yes, I used main, body, and top bar, and footer.
+- [x] **Use of a CSS framework** - yes, I used Bootstrap to stylize the settings create/login buttons.
 - [x] **All visual elements styled using CSS** - I used font color/sizes, margins, padding, width/height, position, display, background, flex-direction,align-item, box-shadow, border, border-radius, different transformations, and linear gradients.
 - [x] **Responsive to window resizing using flexbox and/or grid display** - I stays visually appealling, even on different devices. 
 - [x] **Use of a imported font** - i used Kalam and Cherry Bomb fonts from google. 

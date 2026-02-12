@@ -1,57 +1,35 @@
-import './app.css'
-import { NavLink, Outlet } from 'react-router-dom'
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-export default function App() {
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div className="game">
-      {/*  header  */}
-      <header>
-        <div className="top-bar">
-          <h1>Tap A Lot</h1>
-
-          <div className="scores">
-            🪙 Scores: <span>0</span>
-          </div>
-
-          <NavLink to="/settings">
-            <button className="setting">
-              <img
-                src="https://www.pikpng.com/pngl/b/283-2837391_settings-vector-mobile-setting-icone-de-configurao-png.png"
-                alt="Settings"
-                width="25"
-                height="25"
-              />
-            </button>
-          </NavLink>
-        </div>
-      </header>
-
-      {/*  page content (changes per route) */}
-      <main style={{ flex: 1 }}>
-        <Outlet />
-      </main>
-
-      {/*  bottom nav  */}
-      <nav className="bottom-nav">
-        <NavLink to="/" className="nav tap">
-          <h2>Tap</h2>
-        </NavLink>
-
-        <NavLink to="/store" className="nav store">
-          <h2>Store</h2>
-        </NavLink>
-
-        <NavLink to="/ranking" className="nav ranking">
-          <h2>Rank</h2>
-        </NavLink>
-      </nav>
-
-      {/* ===== FOOTER ===== */}
-      <footer>
-        <p>Claire Daley</p>
-        <a href="https://github.com/daleclai/My-Tap-A-Lot.git">GitHub</a>
-      </footer>
-    </div>
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   )
 }
 
+export default App

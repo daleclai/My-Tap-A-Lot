@@ -27,14 +27,8 @@ body {
 }
 
 .ranking_header h1 {
-    color: #2e6db7;
+    color: black;
     font-size: 42px;
-    text-shadow:
-        3px 3px 0 #4a90e2,
-        -1px -1px 0 #1a5a9a,
-        1px -1px 0 #1a5a9a,
-        -1px 1px 0 #1a5a9a,
-        4px 4px 8px rgba(0, 0, 0, 0.3);
     letter-spacing: 2px;
 }
 

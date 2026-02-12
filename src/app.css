@@ -167,3 +167,18 @@ footer a {
   text-decoration: none;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  .top-bar h1 { font-size: 1.8rem; }
+  .scores { padding: 4px 8px; font-size: 0.9rem; }
+
+  .nav img { width: 24px; height: 24px; }
+  .nav { font-size: 10px; padding: 4px; }
+}
+
+@media (max-width: 480px) {
+  .nav img { width: 20px; height: 20px; }
+  .nav { font-size: 9px; padding: 3px; }
+  .bottom-nav { padding: 4px 0; }
+  .top-bar { flex-direction: column; gap: 8px; }
+}

@@ -1,0 +1,20 @@
+.main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+}
+
+.big-red-button {
+  width: min(220px, 60vw);
+  height: min(220px, 60vw);
+  border-radius: 50%;
+  background: radial-gradient(circle at top, #ff6b6b, #e60000 70%);
+  border: 8px solid #b3b3b3;
+  cursor: pointer;
+}
+
+.tap {
+  background: linear-gradient(to bottom, #4a90e2, #2e6db7);
+}

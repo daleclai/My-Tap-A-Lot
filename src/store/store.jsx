@@ -1,10 +1,6 @@
-import './store.css'
+import React from 'react';
+import './store.css';
 
 export function Store() {
-  return (
-    <div className="page">
-      <h2>Store</h2>
-      <p>Buy upgrades here.</p>
-    </div>
-  )
+  return <main className="container">Store page content goes here</main>;
 }

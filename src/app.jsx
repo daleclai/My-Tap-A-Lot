@@ -29,12 +29,44 @@ export default function App() {
           <Route path="*" element={<div className="container">404: Page not found</div>} />
         </Routes>
 
-        <footer>
-          <p>Claire Daley</p>
-          <p>
-            <a href="https://github.com/daleclai/My-Tap-A-Lot.git">GitHub</a>
-          </p>
-        </footer>
+        <nav className="bottom-nav">
+  <NavLink to="/">
+    <button className="nav tap">
+      <img
+        src="/tap.png"
+        alt="Tap icon"
+        width="50"
+        height="50"
+      />
+      <h2>Tap</h2>
+    </button>
+  </NavLink>
+
+  <NavLink to="/store">
+    <button className="nav store">
+      <img
+        src="/store.png"
+        alt="Store icon"
+        width="50"
+        height="50"
+      />
+      <h2>Store</h2>
+    </button>
+  </NavLink>
+
+  <NavLink to="/ranking">
+    <button className="nav ranking">
+      <img
+        src="/ranking.png"
+        alt="Ranking icon"
+        width="50"
+        height="50"
+      />
+      <h2>Rank</h2>
+    </button>
+  </NavLink>
+</nav>
+
       </div>
     </BrowserRouter>
   );

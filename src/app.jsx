@@ -34,17 +34,17 @@ export default function App() {
         <nav className="bottom-nav">
             <NavLink to="/" className="nav tap">
                 <img src='/tap.png' alt ='tap icon' className='tap-icon' />
-                Tap
+                <span>Tap</span>
             </NavLink>
 
             <NavLink to="/store" className="nav store">
                 <img src='/store.png' alt ='store icon' className='store-icon' />                
-                Store
+                <span>Store</span>
             </NavLink>
 
             <NavLink to="/ranking" className="nav ranking">
                 <img src='/rank.png' alt ='rank icon' className='rank-icon' />
-                Rank
+                <span>Ranking</span>
             </NavLink>   
 
         </nav>

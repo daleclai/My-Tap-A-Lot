@@ -1,8 +1,12 @@
+@import url('https://www.1001fonts.com/cartoon+comic-fonts.html');
+
+
 .app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   background: linear-gradient(#6fa8ff, #cfe8ff);
+  padding-bottom: 120px; /* space for footer + fixed nav */
 }
 
 
@@ -14,6 +18,12 @@
     justify-content: space-between;
     align-items: center;
     flex-shrink: 0;
+}
+
+h1 {
+    font-family: "Cherry Bomb One", system-ui;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .scores {
@@ -34,22 +44,27 @@
     border-radius: 20px;
 }
 
-.setting {
+.settings.nav {
     background: linear-gradient(to bottom, #2c3e50 0%, #1a252f 100%);
     border: 4px solid #34495e;
     border-radius: 15px;
-    padding: 10px 20px;
+    padding: 6px;
     display: flex;
     align-items: center;
     gap: 10px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
 }
 
-.setting:hover {
+.gear-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.settings.nav:hover {
     transform: scale(1.05);
 }
 
-.setting:active {
+.settings.nav:active {
     transform: scale(0.95);
 }
 
@@ -57,27 +72,90 @@
     fill: white;
 }
 
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  background: #8b5a2b;
+  padding: 8px 10px;
+  gap: 10px;
+
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+  z-index: 100;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.bottom-nav a {
+  flex: 1;
+  max-width: 160px;
+  text-decoration: none;
 }
 
-.card {
-  padding: 2em;
+.nav {
+  height: 80px;              
+  padding: 10px;
+  border-radius: 16px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.2s;
 }
 
-.read-the-docs {
-  color: #888;
+.nav img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  display: block;
+}
+
+.tap {
+  background: linear-gradient(to bottom, #4a90e2, #2e6db7);
+}
+
+.store {
+  background: linear-gradient(to bottom, #f5a623, #d48806);
+}
+
+.ranking {
+  background: linear-gradient(to bottom, #7ed321, #5aa70a);
+}
+
+
+footer {
+  margin-top: auto;
+  padding: 12px 0 100px;
+  text-align: center;
+  font-size: 0.9rem;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+footer p {
+  margin: 0;
+  font-weight: 600;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }

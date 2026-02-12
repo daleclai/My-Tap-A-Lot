@@ -18,13 +18,11 @@ export default function App() {
                 🪙 Scores: <span>0</span>
             </div>
             <NavLink to="/settings" className="nav settings">
-                Settings
-            </NavLink>
+                <img src='/gear.png' alt ='gear icon' className='gear-icon' />            </NavLink>
 
 
         </header>
 
-        {/*- page */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/store" element={<Store />} />
@@ -33,13 +31,24 @@ export default function App() {
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
 
-        {/* bottom nav */}
         <nav className="bottom-nav">
-          <NavLink to="/" className="nav tap">Tap</NavLink>
-          <NavLink to="/store" className="nav store">Store</NavLink>
-          <NavLink to="/ranking" className="nav ranking">Rank</NavLink>        </nav>
+            <NavLink to="/" className="nav tap">
+                <img src='/tap.png' alt ='tap icon' className='tap-icon' />
+                Tap
+            </NavLink>
 
-        {/* ---------- FOOTER ---------- */}
+            <NavLink to="/store" className="nav store">
+                <img src='/store.png' alt ='store icon' className='store-icon' />                
+                Store
+            </NavLink>
+
+            <NavLink to="/ranking" className="nav ranking">
+                <img src='/rank.png' alt ='rank icon' className='rank-icon' />
+                Rank
+            </NavLink>   
+
+        </nav>
+
         <footer>
           <p>Claire Daley</p>
           <a

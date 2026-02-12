@@ -1,9 +1,10 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#6fa8ff, #cfe8ff);
 }
+
 
 .top-bar {
     background: #4a90e2;

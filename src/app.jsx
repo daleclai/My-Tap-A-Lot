@@ -10,62 +10,46 @@ import { Settings } from './settings/settings.jsx';
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="body bg-dark text-light">
-        <header>
-          <div className="top-bar">
+      <div className="app">
+
+        <header className='top-bar'>
             <h1>Tap A Lot</h1>
-            <div className="scores">
-              🪙 Scores: <span id="countscore">0</span>
+             <div className='scores'>
+                🪙 Scores: <span>0</span>
             </div>
-          </div>
+            <NavLink to="/settings" className="nav settings">
+                Settings
+            </NavLink>
+
+
         </header>
 
-        {/* Routes render the page components */}
+        {/*- page */}
         <Routes>
           <Route path="/" element={<Homepage />} />
           <Route path="/store" element={<Store />} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="*" element={<div className="container">404: Page not found</div>} />
+          <Route path="*" element={<p>Page not found</p>} />
         </Routes>
 
+        {/* bottom nav */}
         <nav className="bottom-nav">
-  <NavLink to="/">
-    <button className="nav tap">
-      <img
-        src="/tap.png"
-        alt="Tap icon"
-        width="50"
-        height="50"
-      />
-      <h2>Tap</h2>
-    </button>
-  </NavLink>
+          <NavLink to="/" className="nav tap">Tap</NavLink>
+          <NavLink to="/store" className="nav store">Store</NavLink>
+          <NavLink to="/ranking" className="nav ranking">Rank</NavLink>        </nav>
 
-  <NavLink to="/store">
-    <button className="nav store">
-      <img
-        src="/store.png"
-        alt="Store icon"
-        width="50"
-        height="50"
-      />
-      <h2>Store</h2>
-    </button>
-  </NavLink>
-
-  <NavLink to="/ranking">
-    <button className="nav ranking">
-      <img
-        src="/ranking.png"
-        alt="Ranking icon"
-        width="50"
-        height="50"
-      />
-      <h2>Rank</h2>
-    </button>
-  </NavLink>
-</nav>
+        {/* ---------- FOOTER ---------- */}
+        <footer>
+          <p>Claire Daley</p>
+          <a
+            href="https://github.com/daleclai/My-Tap-A-Lot.git"
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        </footer>
 
       </div>
     </BrowserRouter>

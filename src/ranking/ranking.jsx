@@ -33,7 +33,7 @@ export function Ranking() {
                 <span class="score">100,000</span>
             </div>
 
-            <div class="gold row">
+            <div class="rest row">
                 <span class="rank">4</span>
                 <span class="name">PlayerFour</span>
                 <span class="score">90,000</span>

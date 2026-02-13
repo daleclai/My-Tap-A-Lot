@@ -83,9 +83,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Bundled using Vite** - I did not complete this part of the deliverable.
-- [ ] **Components** - I did not complete this part of the deliverable.
-- [ ] **Router** - I did not complete this part of the deliverable.
+- [x] **Bundled using Vite** - bundles my files nad has fast deployment.
+- [x] **Components** - Each page has its own reusable react componment.
+- [x] **Router** - allows for smooth navigation between pages using routes and navlinks iwthout reloading the page.
 
 ## 🚀 React part 2: Reactivity deliverable
 

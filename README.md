@@ -1,5 +1,12 @@
+# Tap a Lot
 
+A game website where you tap a button, earn points for each click, and compete with friends. You can exchange points for different button skins and backgrounds. Create an account (email and name) to store scores and skins and so your name can be ranked on the website. Rankings show ranking, name, and points (diff colors).
 
+## 🚀 Specification Deliverable
+
+### Elevator pitch
+
+Want to play a fun game with friends to compete to see who can tap the most? Then get Tap-a-Lot, a simple, yet fun game about tapping a button and seeing whom among you can do it the most! Tap a lot of times and unlock fun button skins and backgrounds to elevate your experience. Login with your name and email to save your points and skins. See how you rank among oyur friends and everyone who has played before. 
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 

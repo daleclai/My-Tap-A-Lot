@@ -30,8 +30,9 @@ export function Settings(props) {
             <input
               type="email"
               name="varEmail"
-              required
-              placeholder="Email"
+              required placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
@@ -39,8 +40,9 @@ export function Settings(props) {
             <input
               type="password"
               name="varPassword"
-              required
-              placeholder="Password"
+              required placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 

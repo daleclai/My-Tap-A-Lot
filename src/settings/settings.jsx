@@ -2,7 +2,20 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './settings.css';
 
-export function Settings() {
+export function Settings(props) {
+  const [email, setEmail] = React.useState(props.userName || '');
+  const [password, setPassword] = React.useState('');
+
+  async function loginUser() {
+    localStorage.setItem('userName', email);
+    props.onLogin(email);
+  }
+
+  async function createUser() {
+    localStorage.setItem('userName', email);
+    props.onLogin(email);
+  }
+
   return (
     <main className="settings-page">
       <header className="settings-header">

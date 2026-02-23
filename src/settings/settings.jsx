@@ -1,26 +1,26 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import './settings.css';
 
 export function Settings(props) {
-  const [email, setEmail] = React.useState(props.userName || '');
+  const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  React.useEffect(() => {
-    if (props.userName) {
-      setIsLoggedIn(true);
-    }
-  }, [props.userName]);
-  
-  function loginUser() {
-    localStorage.setItem('userName', email);
-    setIsLoggedIn(true);
+  const isLoggedIn = !!props.userName;
+
+  function handleLogin() {
+    props.onLogin(email);
+    setPassword('');
   }
 
-  function createUser() {
-    localStorage.setItem('userName', email);
-    setIsLoggedIn(true);
+  function handleCreate() {
+    props.onLogin(email);
+    setPassword('');
+  }
+
+  function handleLogout() {
+    props.onLogout();
+    setEmail('');
+    setPassword('');
   }
 
   return (
@@ -31,56 +31,64 @@ export function Settings(props) {
 
       <section className="settings-content">
 
+        {isLoggedIn && <h2>Welcome, {props.userName}!</h2>}
 
-        {isLoggedIn ? (
-          <h2>Welcome, {email}!</h2>
-        ) : (
-          
-        <>
-        <p>Create an account to save your taps!</p>
+        {!isLoggedIn && (
+          <>
+            <p>Create an account to save your taps!</p>
 
-        <form className="settings-form">
+            <form className="settings-form">
+              <div className="input-group">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
 
-          <div className="input-group">
-            <input
-              type="email"
-              name="varEmail"
-              required placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
+              <div className="input-group">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+              </div>
 
-          <div className="input-group">
-            <input
-              type="password"
-              name="varPassword"
-              required placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-            />
-          </div>
+              <div className="button-row">
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={handleLogin}
+                  disabled={!email || !password}
+                >
+                  Login
+                </button>
 
-          <div className="button-row">
-            <button 
-              type="button" 
-              className="btn btn-primary" 
-              onClick={loginUser}
-              disabled={!email || !password}>
-              Login
-            </button>
-
-            <button 
-              type="button" 
-              className="btn btn-secondary" 
-              onClick={createUser}
-              disabled={!email || !password}>
-              Create
-            </button>
-          </div>
-        </form>
-        </>
+                <button
+                  type="button"
+                  className="btn btn-secondary"
+                  onClick={handleCreate}
+                  disabled={!email || !password}
+                >
+                  Create
+                </button>
+              </div>
+            </form>
+          </>
         )}
+
+        {isLoggedIn && (
+          <button
+            type="button"
+            className="btn btn-danger mt-2"
+            onClick={handleLogout}
+          >
+            Logout
+          </button>
+        )}
+
       </section>
     </main>
   );

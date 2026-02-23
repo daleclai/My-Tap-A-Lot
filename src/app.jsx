@@ -8,16 +8,25 @@ import { Ranking } from './ranking/ranking.jsx';
 import { Settings } from './settings/settings.jsx';
 
 export default function App() {
-  const [score, setScore] = React.useState(0);
-  React.useEffect(() => {
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-      const savedScore = localStorage.getItem(`score_${userName}`);
-      if (savedScore) {
-        setScore(Number(savedScore));
-      }
-    }
-  }, []);
+  const [userName, setUserName] = React.useState(null);
+  const [score, setScore] = React.useState(null);
+
+React.useEffect(() => {
+  const storedUser = localStorage.getItem('userName');
+  setUserName(storedUser);
+}, []);
+
+function login(name) {
+  localStorage.setItem('userName', name);
+  setUserName(name);
+  setScore(0);
+}
+
+function logout() {
+  localStorage.removeItem('userName');
+  setUserName(null);
+  setScore(null);
+}
 
 
   return (
@@ -27,8 +36,11 @@ export default function App() {
         <header className='top-bar'>
             <h1>Tap A Lot</h1>
              <div className='scores'>
-                🪙 Scores: <span>{score}</span>
-            </div>
+                🪙 Scores: {' '}
+                <span>
+                  {score === null ? '--' : score}
+                </span>
+            </div> 
             <NavLink to="/settings" className="nav settings">
                 <img src='/gear.png' alt ='gear icon' className='gear-icon' />            
             </NavLink>
@@ -38,7 +50,7 @@ export default function App() {
           <Route path="/" element={<Homepage score={score} setScore={setScore} />} />
           <Route path="/store" element={<Store  score={score} setScore={setScore}/>} />
           <Route path="/ranking" element={<Ranking />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/settings" element={<Settings userName={userName} onLogin={login} onLogout={logout} />} />
           <Route path="*" element={<p>Page not found</p>} />
         </Routes>
 

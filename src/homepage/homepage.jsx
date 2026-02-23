@@ -1,17 +1,24 @@
 import React from 'react';
 import './homepage.css';
+import { NavLink } from 'react-router-dom';
 
 export function Homepage({ score, setScore }) {
 
-  function handleTap() {
-    const newScore = score + 1;
-    setScore(newScore);
-    
-    const userName = localStorage.getItem('userName');
-    if (userName) {
-      localStorage.setItem(`score_${userName}`, newScore);
-    }
+  if (score === null) {
+    return (
+      <main className="homepage">
+        <p>Please log in to play!</p>
+      </main>
+    );
   }
+  function handleTap() {
+  const userName = localStorage.getItem('userName');
+  if (!userName || score === null) return; 
+
+  const newScore = score + 1;
+  setScore(newScore);
+  localStorage.setItem(`score_${userName}`, newScore);
+}
 
   return (
     <main className="game">

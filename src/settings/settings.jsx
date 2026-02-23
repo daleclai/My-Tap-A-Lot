@@ -5,15 +5,22 @@ import './settings.css';
 export function Settings(props) {
   const [email, setEmail] = React.useState(props.userName || '');
   const [password, setPassword] = React.useState('');
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
-  async function loginUser() {
+  React.useEffect(() => {
+    if (props.userName) {
+      setIsLoggedIn(true);
+    }
+  }, [props.userName]);
+  
+  function loginUser() {
     localStorage.setItem('userName', email);
-    props.onLogin(email);
+    setIsLoggedIn(true);
   }
 
-  async function createUser() {
+  function createUser() {
     localStorage.setItem('userName', email);
-    props.onLogin(email);
+    setIsLoggedIn(true);
   }
 
   return (
@@ -23,9 +30,17 @@ export function Settings(props) {
       </header>
 
       <section className="settings-content">
+
+
+        {isLoggedIn ? (
+          <h2>Welcome, {email}!</h2>
+        ) : (
+          
+        <>
         <p>Create an account to save your taps!</p>
 
         <form className="settings-form">
+
           <div className="input-group">
             <input
               type="email"
@@ -47,14 +62,25 @@ export function Settings(props) {
           </div>
 
           <div className="button-row">
-            <button type="submit" className="btn btn-primary">
+            <button 
+              type="button" 
+              className="btn btn-primary" 
+              onClick={loginUser}
+              disabled={!email || !password}>
               Login
             </button>
-            <button type="button" className="btn btn-secondary">
+
+            <button 
+              type="button" 
+              className="btn btn-secondary" 
+              onClick={createUser}
+              disabled={!email || !password}>
               Create
             </button>
           </div>
         </form>
+        </>
+        )}
       </section>
     </main>
   );

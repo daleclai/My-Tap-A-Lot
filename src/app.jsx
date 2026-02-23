@@ -36,7 +36,7 @@ export default function App() {
 
         <Routes>
           <Route path="/" element={<Homepage score={score} setScore={setScore} />} />
-          <Route path="/store" element={<Store />} />
+          <Route path="/store" element={<Store  score={score} setScore={setScore}/>} />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<p>Page not found</p>} />

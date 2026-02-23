@@ -52,19 +52,19 @@ export function Store() {
             <h2>Backgrounds</h2>
             <div class="back_options">
                 <button class="options">
-                        <div class="forest_background"></div>
+                        <div class="bg_preview green"></div>
                     1000
                 </button>
                 <button class="options">
-                    <div class="beach_background"></div>
+                    <div class="bg_preview orange"></div>
                     2000
                 </button>
                 <button class="options">
-                    <div class="space_background"></div>
+                    <div class="bg_preview purple"></div>
                     3000
                 </button>
                 <button class="options">
-                    <div class="city_background"></div>
+                    <div class="bg_preview pink"></div>
                     5000
                 </button>
             </div>

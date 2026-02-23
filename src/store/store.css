@@ -217,6 +217,31 @@ body {
     justify-content: center; /* or flex-start if you want left-aligned */
 }
 
+.bg_preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 6px;
+}
+
+.green {
+    background: linear-gradient(135deg, #1b5e20, #66bb6a);
+}
+
+.orange {
+    background: linear-gradient(135deg, #e65100, #ffb74d);
+}
+
+.purple {
+    background: linear-gradient(135deg, #4a148c, #ba68c8);
+}
+
+.pink {
+    background: linear-gradient(135deg, #880e4f, #f48fb1);
+}
+
 
 
 

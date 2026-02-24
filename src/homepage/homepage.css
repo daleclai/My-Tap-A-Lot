@@ -45,6 +45,14 @@
     background: radial-gradient(circle at top, red, orange);
 }
 
+.big-red-button.neon {
+    background: radial-gradient(
+    circle at top,
+    #7cfffb,
+    #00d4ff 70%);
+    
+}
+
 h3 {
     color: whitesmoke;
     font-family: "Kalam", cursive;

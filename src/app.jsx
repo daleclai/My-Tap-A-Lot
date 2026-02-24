@@ -10,27 +10,52 @@ import { Settings } from './settings/settings.jsx';
 export default function App() {
   const [userName, setUserName] = React.useState(null);
   const [score, setScore] = React.useState(null);
-  const [activeBackground, setActiveBackground] = React.useState(
-  localStorage.getItem('activeBackground'));
-
-const [activeButtonSkin, setActiveButtonSkin] = React.useState(
-  localStorage.getItem('activeButtonSkin'));
+  const [activeBackground, setActiveBackground] = React.useState(null);
+  const [activeButtonSkin, setActiveButtonSkin] = React.useState(null);
 
 React.useEffect(() => {
   const storedUser = localStorage.getItem('userName');
   setUserName(storedUser);
 }, []);
 
+React.useEffect(() => {
+  if (!userName) return;
+
+  const storedBackground = localStorage.getItem(`activeBackground_${userName}`);
+  if (storedBackground) setActiveBackground(storedBackground);
+
+  const storedButton = localStorage.getItem(`activeButtonSkin_${userName}`);
+  if (storedButton) setActiveButtonSkin(storedButton);
+
+  const storedScore = parseInt(localStorage.getItem(`score_${userName}`)) || 0;
+  setScore(storedScore);
+}, [userName]);
+
+React.useEffect(() => {
+  if (!userName || score === null) return;
+  localStorage.setItem(`score_${userName}`, score);
+}, [score, userName]);
+
 function login(name) {
   localStorage.setItem('userName', name);
   setUserName(name);
-  setScore(0);
+
+  const storedScore = parseInt(localStorage.getItem(`score_${name}`)) || 0;
+  setScore(storedScore);
+
+  const storedBackground = localStorage.getItem(`activeBackground_${name}`);
+  if (storedBackground) setActiveBackground(storedBackground);
+
+  const storedButton = localStorage.getItem(`activeButtonSkin_${name}`);
+  if (storedButton) setActiveButtonSkin(storedButton);
 }
 
 function logout() {
   localStorage.removeItem('userName');
   setUserName(null);
   setScore(null);
+  setActiveBackground(null);
+  setActiveButtonSkin(null);
 }
 
 

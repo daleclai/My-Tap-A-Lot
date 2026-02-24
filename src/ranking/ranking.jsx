@@ -2,43 +2,61 @@ import React from 'react';
 import './ranking.css';
 
 export function Ranking() {
+  const [rankings, setRankings] = React.useState([]);
+
+  React.useEffect(() => {
+    const users = [];
+
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+
+      if (key.startsWith('score_')) {
+        const email = key.replace('score_', '');
+        const score = parseInt(localStorage.getItem(key)) || 0;
+
+        users.push({ email, score });
+      }
+    }
+
+    users.sort((a, b) => b.score - a.score);
+
+    setRankings(users);
+  }, []);
+
+  // Determine row color based on rank
+  function getRankClass(index) {
+    if (index === 0) return 'gold';
+    if (index === 1) return 'silver';
+    if (index === 2) return 'bronze';
+    return 'rest'; // orange
+  }
+
   return (
-    <div class="ranking_body">
-        <div class="ranking_header">
-            <header>
-                <h1>Rankings</h1>
-            </header>
-        </div>
+    <div className="ranking_body">
+      <div className="ranking_header">
+        <header>
+          <h1>Rankings</h1>
+        </header>
+      </div>
 
-        <div class="jokeAPI">
-            <h2><a href="https://sv443.net/jokeapi/v2/">jokeAPI HERE</a></h2>
-        </div>
+      <div className="ranks">
+        {rankings.length === 0 && (
+          <p className="no_scores">No players yet</p>
+        )}
 
-        <div class="ranks">
-            <div class="gold row">
-                <span class="rank">🏆 1</span>
-                <span class="name">PlayerOne</span>
-                <span class="score">125,000</span>
-            </div>
-
-            <div class="silver row">
-                <span class="rank">🏆 2</span>
-                <span class="name">PlayerTwo</span>
-                <span class="score">110,000</span>
-            </div>
-
-             <div class="bronze row">
-                <span class="rank">🏆 3</span>
-                <span class="name">PlayerThree</span>
-                <span class="score">100,000</span>
-            </div>
-
-            <div class="rest row">
-                <span class="rank">4</span>
-                <span class="name">PlayerFour</span>
-                <span class="score">90,000</span>
-            </div>
-        </div>
+        {rankings.map((player, index) => (
+          <div
+            key={player.email}
+            className={`row ${getRankClass(index)}`}
+          >
+            <span className="rank">
+              {index < 3 ? '🏆' : index + 1} {index + 1}
+            </span>
+            <span className="name">{player.email}</span>
+            <span className="score">{player.score}</span>
+          </div>
+        ))}
+      </div>
     </div>
-  )
+  );
 }

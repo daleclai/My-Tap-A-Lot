@@ -132,6 +132,22 @@ h1 {
   background: linear-gradient(to bottom, #4a90e2, #2e6db7);
 }
 
+.game.green {
+  background: linear-gradient(135deg, #1b5e20, #66bb6a);
+}
+
+.game.orange {
+    background: linear-gradient(135deg, #e65100, #ffb74d);
+}
+
+.game.purple {
+    background: linear-gradient(135deg, #4a148c, #ba68c8);
+}
+
+.game.pink {
+    background: linear-gradient(135deg, #880e4f, #f48fb1);
+}
+
 .store {
   background: linear-gradient(to bottom, #f5a623, #d48806);
 }

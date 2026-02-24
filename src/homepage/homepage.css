@@ -33,6 +33,18 @@
     margin: 20px;
 }
 
+.big-red-button.blue {
+    background: radial-gradient(circle at top, #4a90e2, #357ABD);
+}
+
+.big-red-button.golden {
+    background: radial-gradient(circle at top, gold, orange);
+}
+
+.big-red-button.fire {
+    background: radial-gradient(circle at top, red, orange);
+}
+
 h3 {
     color: whitesmoke;
     font-family: "Kalam", cursive;

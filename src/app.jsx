@@ -10,6 +10,11 @@ import { Settings } from './settings/settings.jsx';
 export default function App() {
   const [userName, setUserName] = React.useState(null);
   const [score, setScore] = React.useState(null);
+  const [activeBackground, setActiveBackground] = React.useState(
+  localStorage.getItem('activeBackground'));
+
+const [activeButtonSkin, setActiveButtonSkin] = React.useState(
+  localStorage.getItem('activeButtonSkin'));
 
 React.useEffect(() => {
   const storedUser = localStorage.getItem('userName');
@@ -47,8 +52,31 @@ function logout() {
         </header>
 
         <Routes>
-          <Route path="/" element={<Homepage score={score} setScore={setScore} />} />
-          <Route path="/store" element={<Store  score={score} setScore={setScore}/>} />
+          <Route
+          path="/"
+          element={
+            <Homepage
+              score={score}
+              setScore={setScore}
+              activeBackground={activeBackground}
+              activeButtonSkin={activeButtonSkin}
+            />
+          }
+        />
+
+        <Route
+          path="/store"
+          element={
+            <Store
+              score={score}
+              setScore={setScore}
+              activeBackground={activeBackground}
+              setActiveBackground={setActiveBackground}
+              activeButtonSkin={activeButtonSkin}
+              setActiveButtonSkin={setActiveButtonSkin}
+            />
+          }
+        />
           <Route path="/ranking" element={<Ranking />} />
           <Route path="/settings" element={<Settings userName={userName} onLogin={login} onLogout={logout} />} />
           <Route path="*" element={<p>Page not found</p>} />

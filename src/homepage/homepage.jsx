@@ -2,7 +2,7 @@ import React from 'react';
 import './homepage.css';
 import { NavLink } from 'react-router-dom';
 
-export function Homepage({ score, setScore }) {
+export function Homepage({ score, setScore, activeBackground, activeButtonSkin }) {
 
   if (score === null) {
     return (
@@ -21,10 +21,13 @@ export function Homepage({ score, setScore }) {
 }
 
   return (
-    <main className="game">
+    <main className={`game ${activeBackground ?? ''}`}>
       <div className="main">
         <div className="button_base">
-          <button className="big-red-button" onClick={handleTap}>
+          <button
+            className={`big-red-button ${activeButtonSkin ?? ''}`}
+            onClick={handleTap}
+          >
             <h3>TAP ME!</h3>
           </button>
         </div>

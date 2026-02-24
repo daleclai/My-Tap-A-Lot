@@ -23,12 +23,16 @@ export function Ranking() {
     setRankings(users);
   }, []);
 
-  // Determine row color based on rank
   function getRankClass(index) {
     if (index === 0) return 'gold';
     if (index === 1) return 'silver';
     if (index === 2) return 'bronze';
     return 'rest'; // orange
+  }
+
+  function getDisplayName(email) {
+    const namePart = email.split('@')[0];
+    return namePart.length > 20 ? namePart.slice(0, 10) + '...' : namePart;
   }
 
   return (
@@ -38,6 +42,10 @@ export function Ranking() {
           <h1>Rankings</h1>
         </header>
       </div>
+      
+        <div className="jokeAPI">
+            <p>JokeAPI here</p>
+        </div>
 
       <div className="ranks">
         {rankings.length === 0 && (
@@ -52,7 +60,7 @@ export function Ranking() {
             <span className="rank">
               {index < 3 ? '🏆' : index + 1} {index + 1}
             </span>
-            <span className="name">{player.email}</span>
+            <span className="name">{getDisplayName(player.email)}</span>
             <span className="score">{player.score}</span>
           </div>
         ))}

@@ -22,6 +22,10 @@ export function Settings(props) {
     setEmail('');
     setPassword('');
   }
+  function getName(email) {
+    const namePart = email.split('@')[0];
+    return namePart.length > 20 ? namePart.slice(0, 10) + '...' : namePart;
+  }
 
   return (
     <main className="settings-page">
@@ -31,7 +35,7 @@ export function Settings(props) {
 
       <section className="settings-content">
 
-        {isLoggedIn && <h2>Welcome, {props.userName}!</h2>}
+        {isLoggedIn && <h2>Welcome, {getName(props.userName)}!</h2>}
 
         {!isLoggedIn && (
           <>

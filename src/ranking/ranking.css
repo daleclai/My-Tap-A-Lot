@@ -57,7 +57,7 @@ body {
 }
 
 .ranks {
-    width: 70%;
+    width: min(700px, 90%);
     background: rgba(255, 255, 255, 0.95);
     border: 5px solid #4a90e2;
     border-radius: 15px;

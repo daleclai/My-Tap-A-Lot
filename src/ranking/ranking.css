@@ -63,6 +63,9 @@ body {
     border-radius: 15px;
     padding: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+
+    max-height: 55vh;
+    overflow-y: auto;
 }
 
 .row {
@@ -74,8 +77,6 @@ body {
     margin-bottom: 6px;   
     border-radius: 10px;
 
-    font-size: 14px;   
-    font-weight: bold;
 
     border: 2px solid rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -83,26 +84,23 @@ body {
     color: white;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
     height: auto;          
-    min-height: 10px;      
+    min-height: 10px;    
+    width: 100%;  
 }
 
-
-.row .rank {
-    min-width: 40px;
-    font-size: 14px;
-}
 
 .row .name {
     flex: 1;
     text-align: left;
-    margin: 0 8px;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .row .score {
-    font-size: 14px;
+    font-size: 20px;
     text-align: right;
 }
+
+
 
 .gold {
     background: linear-gradient(to right, #ffd700, #ffed4e);

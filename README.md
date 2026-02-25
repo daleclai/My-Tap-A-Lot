@@ -99,10 +99,15 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
 - [x] **All functionality implemented or mocked out**
+
         [1] **Settings**: Add functions for login, create, and log out. Create local storage so that people's accounts are saved. Successfully saves scores, but didn't implement how to check password.
+      
         [2] **Homepage**: Add functions and working score so that every tap increments the score.
+      
         [3] **Store**: once a person has enough score, they are able to purchase button skins and a background. Successfully able to switch backgrounds and skin, but couldn't figure out how to keep an item owned across the webpage so they don't have to rebuy it.
-        [4] **Ranking**: Successfully able to add rankings according according to account and score. Score points are ranked from highest to lowest. 
+      
+        [4] **Ranking**: Successfully able to add rankings according according to account and score. Score points are ranked from highest to lowest.
+       
 - [x] **Hooks** - Used usestate to track reactive states, like score, user, and owned items. Used useeffect for local storage allowing persistance.
 
 ## 🚀 Service deliverable

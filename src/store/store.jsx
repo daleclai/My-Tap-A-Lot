@@ -10,12 +10,13 @@ export function Store({
   setActiveButtonSkin
 }) {
   const [owned, setOwned] = React.useState([]);
+  const userName = localStorage.getItem('userName');
 
   const buttonSkins = [
     { id: 'blue', cost: 100 },
     { id: 'neon', cost: 200 },
     { id: 'gold', cost: 300 },
-    { id: 'fire', cost: 500 }
+    { id: 'fire', cost: 5}
   ];
 
   const backgrounds = [
@@ -25,19 +26,21 @@ export function Store({
     { id: 'pink', cost: 5000 }
   ];
 
-  React.useEffect(() => {
-    const userName = localStorage.getItem('userName');
-    if (!userName) return;
+React.useEffect(() => {
+  if (!userName) return;
 
-    const storedOwned = JSON.parse(localStorage.getItem(`owned_${userName}`)) || [];
-    setOwned(storedOwned);
+  const storedOwned =
+    JSON.parse(localStorage.getItem(`owned_${userName}`)) || [];
+  setOwned(storedOwned);
 
-    const storedBackground = localStorage.getItem(`activeBackground_${userName}`);
-    if (storedBackground) setActiveBackground(storedBackground);
+  const storedBackground =
+    localStorage.getItem(`activeBackground_${userName}`);
+  if (storedBackground) setActiveBackground(storedBackground);
 
-    const storedButton = localStorage.getItem(`activeButtonSkin_${userName}`);
-    if (storedButton) setActiveButtonSkin(storedButton);
-  }, []);
+  const storedButton =
+    localStorage.getItem(`activeButtonSkin_${userName}`);
+  if (storedButton) setActiveButtonSkin(storedButton);
+}, [userName]);
 
   React.useEffect(() => {
     const userName = localStorage.getItem('userName');
@@ -47,6 +50,19 @@ export function Store({
     if (activeBackground) localStorage.setItem(`activeBackground_${userName}`, activeBackground);
     if (activeButtonSkin) localStorage.setItem(`activeButtonSkin_${userName}`, activeButtonSkin);
   }, [owned, activeBackground, activeButtonSkin]);
+
+  React.useEffect(() => {
+  if (!userName || score === null) return;
+  localStorage.setItem(`score_${userName}`, score);
+}, [score, userName]);
+
+React.useEffect(() => {
+  if (!userName) return;
+
+  const storedScore =
+    parseInt(localStorage.getItem(`score_${userName}`)) || 0;
+  setScore(storedScore);
+}, [userName]);
 
   function buy(item) {
     if (score < item.cost || owned.includes(item.id)) return;
@@ -66,6 +82,12 @@ export function Store({
     if (userName) localStorage.removeItem(`activeButtonSkin_${userName}`);
   }
 
+  function buy(item) {
+    if (owned.includes(item.id) || score < item.cost) return;
+    setScore(prev => prev - item.cost);
+    setOwned(prev => [...prev, item.id]);
+  }
+
   return (
     <div className="storebody">
       <div className="storeheader">
@@ -83,14 +105,17 @@ export function Store({
         <div className="btn_items">
           {buttonSkins.map((skin) => (
             <button
-              key={skin.id}
-              className="options"
-              onClick={() =>
-                owned.includes(skin.id)
-                  ? setActiveButtonSkin(skin.id) 
-                  : buy(skin)        
-              }
-            >
+                key={skin.id}
+                className={`options ${owned.includes(skin.id) ? 'owned-btn' : ''}`}
+                disabled={!owned.includes(skin.id) && score < skin.cost} 
+                onClick={() => {
+                  if (owned.includes(skin.id)) {
+                    setActiveButtonSkin(skin.id); 
+                  } else {
+                    buy(skin); 
+                  }
+                }}
+              >
               <div className="base">
                 <div className={`${skin.id}_button`}></div>
               </div>
@@ -118,15 +143,24 @@ export function Store({
           {backgrounds.map((bg) => (
             <button
               key={bg.id}
-              className="options"
-              onClick={() =>
-                owned.includes(bg.id)
-                  ? setActiveBackground(bg.id) 
-                  : buy(bg)                    
-              }
+              className={`options ${owned.includes(bg.id) ? 'owned-btn' : ''}`} 
+                disabled={!owned.includes(bg.id) && score < bg.cost}
+              onClick={() => {
+                if (owned.includes(bg.id)) {
+                  setActiveBackground(bg.id);
+                } else {
+                  buy(bg); 
+                }
+              }}
             >
               <div className={`bg_preview ${bg.id}`}></div>
-              <div className={`button_label ${owned.includes(bg.id) ? 'owned' : ''} ${activeBackground === bg.id ? 'active' : ''}`}>
+
+              <div
+                className={`button_label
+                  ${owned.includes(bg.id) ? 'owned' : ''}
+                  ${activeBackground === bg.id ? 'active' : ''}
+                `}
+              >
                 {owned.includes(bg.id)
                   ? activeBackground === bg.id
                     ? 'Active'

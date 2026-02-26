@@ -16,7 +16,7 @@ export function Store({
     { id: 'blue', cost: 100 },
     { id: 'neon', cost: 200 },
     { id: 'gold', cost: 300 },
-    { id: 'fire', cost: 5}
+    { id: 'fire', cost: 500}
   ];
 
   const backgrounds = [

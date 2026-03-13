@@ -8,20 +8,18 @@ export function Settings(props) {
   const isLoggedIn = !!props.userName;
 
   function handleLogin() {
-    props.onLogin(email);
-    setPassword('');
-  }
-
-  function handleCreate() {
-    props.onLogin(email);
-    setPassword('');
-  }
+  props.onLogin(email, password, false);
+}
+function handleCreate() {
+  props.onLogin(email, password, true);
+}
 
   function handleLogout() {
     props.onLogout();
     setEmail('');
     setPassword('');
   }
+
   function getName(email) {
     const namePart = email.split('@')[0];
     return namePart.length > 20 ? namePart.slice(0, 10) + '...' : namePart;

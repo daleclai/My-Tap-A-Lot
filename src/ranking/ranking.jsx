@@ -5,29 +5,17 @@ export function Ranking() {
   const [rankings, setRankings] = React.useState([]);
 
   React.useEffect(() => {
-    const users = [];
-
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-
-      if (key.startsWith('score_')) {
-        const email = key.replace('score_', '');
-        const score = parseInt(localStorage.getItem(key)) || 0;
-
-        users.push({ email, score });
-      }
-    }
-
-    users.sort((a, b) => b.score - a.score);
-
-    setRankings(users);
-  }, []);
+  fetch('/api/leaderboard')
+    .then((r) => r.json())
+    .then(setRankings)
+    .catch(() => setRankings([]));
+}, []);
 
   function getRankClass(index) {
     if (index === 0) return 'gold';
     if (index === 1) return 'silver';
     if (index === 2) return 'bronze';
-    return 'rest'; // orange
+    return 'rest';
   }
 
   function getDisplayName(email) {

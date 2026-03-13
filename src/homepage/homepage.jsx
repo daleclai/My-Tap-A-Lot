@@ -11,14 +11,12 @@ export function Homepage({ score, setScore, activeBackground, activeButtonSkin }
       </main>
     );
   }
-  function handleTap() {
-  const userName = localStorage.getItem('userName');
-  if (!userName || score === null) return; 
 
-  const newScore = score + 1;
-  setScore(newScore);
-  localStorage.setItem(`score_${userName}`, newScore);
-}
+  function handleTap() {
+    if (score === null) return;
+    setScore(score + 1);  
+  }
+
 
   return (
     <main className={`game ${activeBackground ?? ''}`}>

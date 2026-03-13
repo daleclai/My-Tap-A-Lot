@@ -13,45 +13,55 @@ export default function App() {
   const [activeBackground, setActiveBackground] = React.useState(null);
   const [activeButtonSkin, setActiveButtonSkin] = React.useState(null);
 
-React.useEffect(() => {
-  const storedUser = localStorage.getItem('userName');
-  setUserName(storedUser);
-}, []);
-
-React.useEffect(() => {
-  if (!userName) return;
-
-  const storedBackground = localStorage.getItem(`activeBackground_${userName}`);
-  if (storedBackground) setActiveBackground(storedBackground);
-
-  const storedButton = localStorage.getItem(`activeButtonSkin_${userName}`);
-  if (storedButton) setActiveButtonSkin(storedButton);
-
-  const storedScore = parseInt(localStorage.getItem(`score_${userName}`)) || 0;
-  setScore(storedScore);
-}, [userName]);
+async function loadUserData() {
+  const res = await fetch('/api/score');
+  if (res.ok) {
+    const data = await res.json();
+    setScore(data.score);
+  }
+}
 
 React.useEffect(() => {
   if (!userName || score === null) return;
-  localStorage.setItem(`score_${userName}`, score);
+  fetch('/api/score', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ score }),
+  }).catch(console.error);
 }, [score, userName]);
 
-function login(name) {
-  localStorage.setItem('userName', name);
-  setUserName(name);
 
-  const storedScore = parseInt(localStorage.getItem(`score_${name}`)) || 0;
-  setScore(storedScore);
 
-  const storedBackground = localStorage.getItem(`activeBackground_${name}`);
-  if (storedBackground) setActiveBackground(storedBackground);
-
-  const storedButton = localStorage.getItem(`activeButtonSkin_${name}`);
-  if (storedButton) setActiveButtonSkin(storedButton);
+async function login(email, password, isNew) {
+  const endpoint = isNew ? '/api/auth/create' : '/api/auth/login';
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) {
+    const { msg } = await res.json();
+    throw new Error(msg);
+  }
+  const data = await res.json();
+  setUserName(data.email);
+  await loadUserData();
 }
 
-function logout() {
-  localStorage.removeItem('userName');
+React.useEffect(() => {
+  fetch('/api/auth/me')
+    .then((r) => (r.ok ? r.json() : null))
+    .then((data) => {
+      if (data?.email) {
+        setUserName(data.email);
+        loadUserData();
+      }
+    })
+    .catch(() => {});
+}, []);
+
+async function logout() {
+  await fetch('/api/auth/logout', { method: 'DELETE' });
   setUserName(null);
   setScore(null);
   setActiveBackground(null);

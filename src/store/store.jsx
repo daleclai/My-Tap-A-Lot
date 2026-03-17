@@ -10,6 +10,7 @@ export function Store({
   setActiveButtonSkin
 }) {
   const [owned, setOwned] = React.useState([]);
+  const [loaded, setLoaded] = React.useState(false);
 
   const buttonSkins = [
     { id: 'blue', cost: 100 },
@@ -25,24 +26,27 @@ export function Store({
     { id: 'pink', cost: 5000 }
   ];
 
- React.useEffect(() => {
-    fetch('/api/inventory')
-      .then((r) => r.ok ? r.json() : null)
-      .then((data) => {
-        if (data?.inventory) setOwned(data.inventory);
-      })
-      .catch(() => {});
-  }, []);
+React.useEffect(() => {
+  fetch('/api/inventory/state')
+    .then((r) => r.ok ? r.json() : null)
+    .then((data) => {
+      if (!data) return;
+      if (data.inventory) setOwned(data.inventory);
+      if (data.activeBackground) setActiveBackground(data.activeBackground);
+      if (data.activeButtonSkin) setActiveButtonSkin(data.activeButtonSkin);
+    })
+    .catch(() => {})
+    .finally(() => setLoaded(true));
+}, []);
 
-  // Save owned items and active skins to backend whenever they change
-  React.useEffect(() => {
-    if (owned.length === 0) return;
-    fetch('/api/inventory/state', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ owned, activeBackground, activeButtonSkin }),
-    }).catch(console.error);
-  }, [owned, activeBackground, activeButtonSkin]);
+React.useEffect(() => {
+  if (!loaded) return;
+  fetch('/api/inventory/state', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ owned, activeBackground, activeButtonSkin }),
+  }).catch(console.error);
+}, [owned, activeBackground, activeButtonSkin]);
 
   function buy(item) {
     if (owned.includes(item.id) || score < item.cost) return;

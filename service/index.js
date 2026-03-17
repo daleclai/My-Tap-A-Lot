@@ -88,12 +88,28 @@ app.get('/api/leaderboard', (_req, res) => {
 
 app.get('/api/quote', async (_req, res) => {
   try {
-    const response = await fetch('https://api.adviceslip.com/advice');
+    const response = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit&type=single');
     const data = await response.json();
-    res.send({ quote: data.slip.advice });
+    res.send({ quote: data.joke });
   } catch {
     res.send({ quote: 'Keep tapping!' });
   }
+});
+
+app.get('/api/inventory/state', verifyAuth, (req, res) => {
+  res.send({
+    inventory: req.user.inventory ?? [],
+    activeBackground: req.user.activeBackground ?? null,
+    activeButtonSkin: req.user.activeButtonSkin ?? null,
+  });
+});
+
+app.post('/api/inventory/state', verifyAuth, (req, res) => {
+  const { owned, activeBackground, activeButtonSkin } = req.body;
+  req.user.inventory = owned ?? [];
+  req.user.activeBackground = activeBackground ?? null;
+  req.user.activeButtonSkin = activeButtonSkin ?? null;
+  res.send({ ok: true });
 });
 
 

@@ -3,12 +3,18 @@ import './ranking.css';
 
 export function Ranking() {
   const [rankings, setRankings] = React.useState([]);
+  const [joke, setJoke] = React.useState('');
 
   React.useEffect(() => {
   fetch('/api/leaderboard')
     .then((r) => r.json())
     .then(setRankings)
     .catch(() => setRankings([]));
+
+  fetch('/api/quote')
+    .then((r) => r.json())
+    .then((d) => setJoke(d.quote))
+    .catch(() => setJoke('Keep tapping!'));
 }, []);
 
   function getRankClass(index) {
@@ -32,7 +38,7 @@ export function Ranking() {
       </div>
       
         <div className="jokeAPI">
-            <p>JokeAPI here</p>
+            <p> {joke} </p>
         </div>
 
       <div className="ranks">

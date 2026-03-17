@@ -46,7 +46,7 @@ React.useEffect(() => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ owned, activeBackground, activeButtonSkin }),
   }).catch(console.error);
-}, [owned, activeBackground, activeButtonSkin]);
+}, [loaded, owned, activeBackground, activeButtonSkin]);
 
   function buy(item) {
     if (owned.includes(item.id) || score < item.cost) return;

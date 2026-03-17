@@ -10,7 +10,6 @@ export function Store({
   setActiveButtonSkin
 }) {
   const [owned, setOwned] = React.useState([]);
-  const userName = localStorage.getItem('userName');
 
   const buttonSkins = [
     { id: 'blue', cost: 100 },
@@ -26,66 +25,37 @@ export function Store({
     { id: 'pink', cost: 5000 }
   ];
 
-React.useEffect(() => {
-  if (!userName) return;
+ React.useEffect(() => {
+    fetch('/api/inventory')
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => {
+        if (data?.inventory) setOwned(data.inventory);
+      })
+      .catch(() => {});
+  }, []);
 
-  const storedOwned =
-    JSON.parse(localStorage.getItem(`owned_${userName}`)) || [];
-  setOwned(storedOwned);
-
-  const storedBackground =
-    localStorage.getItem(`activeBackground_${userName}`);
-  if (storedBackground) setActiveBackground(storedBackground);
-
-  const storedButton =
-    localStorage.getItem(`activeButtonSkin_${userName}`);
-  if (storedButton) setActiveButtonSkin(storedButton);
-}, [userName]);
-
+  // Save owned items and active skins to backend whenever they change
   React.useEffect(() => {
-    const userName = localStorage.getItem('userName');
-    if (!userName) return;
-
-    localStorage.setItem(`owned_${userName}`, JSON.stringify(owned));
-    if (activeBackground) localStorage.setItem(`activeBackground_${userName}`, activeBackground);
-    if (activeButtonSkin) localStorage.setItem(`activeButtonSkin_${userName}`, activeButtonSkin);
+    if (owned.length === 0) return;
+    fetch('/api/inventory/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ owned, activeBackground, activeButtonSkin }),
+    }).catch(console.error);
   }, [owned, activeBackground, activeButtonSkin]);
-
-  React.useEffect(() => {
-  if (!userName || score === null) return;
-  localStorage.setItem(`score_${userName}`, score);
-}, [score, userName]);
-
-React.useEffect(() => {
-  if (!userName) return;
-
-  const storedScore =
-    parseInt(localStorage.getItem(`score_${userName}`)) || 0;
-  setScore(storedScore);
-}, [userName]);
-
-  function buy(item) {
-    if (score < item.cost || owned.includes(item.id)) return;
-    setScore(score - item.cost);
-    setOwned([...owned, item.id]);
-  }
-
-  function resetBackground() {
-    setActiveBackground(null);
-    const userName = localStorage.getItem('userName');
-    if (userName) localStorage.removeItem(`activeBackground_${userName}`);
-  }
-
-  function resetButtonSkin() {
-    setActiveButtonSkin(null);
-    const userName = localStorage.getItem('userName');
-    if (userName) localStorage.removeItem(`activeButtonSkin_${userName}`);
-  }
 
   function buy(item) {
     if (owned.includes(item.id) || score < item.cost) return;
     setScore(prev => prev - item.cost);
     setOwned(prev => [...prev, item.id]);
+  }
+
+  function resetBackground() {
+    setActiveBackground(null);
+  }
+
+  function resetButtonSkin() {
+    setActiveButtonSkin(null);
   }
 
   return (

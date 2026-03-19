@@ -2,6 +2,13 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bcrypt = require('bcryptjs');
 const uuid = require('uuid');
+const config = require('./dbConfig');
+const { MongoClient } = require('mongodb');
+
+const url = 'mongodb+srv://${config.username}:${config.password}@${config.cluster}/${config.database}?retryWrites=true&w=majority';
+
+const client = new MongoClient(config.url);
+const db = client.db(config.database);
 
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
@@ -10,12 +17,11 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
 
-let users = [];
 
 const authCookie = "token";
 
-function verifyAuth(req, res, next) {
-  const user = users.find((u) => u.token === req.cookies[authCookie]);
+async function verifyAuth(req, res, next) {
+  const user = await getUserByToken(req.cookies[authCookie]);
   if (user) {
     req.user = user;   
     next();
@@ -88,28 +94,12 @@ app.get('/api/leaderboard', (_req, res) => {
 
 app.get('/api/quote', async (_req, res) => {
   try {
-    const response = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit&type=single');
+    const response = await fetch('https://api.adviceslip.com/advice');
     const data = await response.json();
-    res.send({ quote: data.joke });
+    res.send({ quote: data.slip.advice });
   } catch {
     res.send({ quote: 'Keep tapping!' });
   }
-});
-
-app.get('/api/inventory/state', verifyAuth, (req, res) => {
-  res.send({
-    inventory: req.user.inventory ?? [],
-    activeBackground: req.user.activeBackground ?? null,
-    activeButtonSkin: req.user.activeButtonSkin ?? null,
-  });
-});
-
-app.post('/api/inventory/state', verifyAuth, (req, res) => {
-  const { owned, activeBackground, activeButtonSkin } = req.body;
-  req.user.inventory = owned ?? [];
-  req.user.activeBackground = activeBackground ?? null;
-  req.user.activeButtonSkin = activeButtonSkin ?? null;
-  res.send({ ok: true });
 });
 
 

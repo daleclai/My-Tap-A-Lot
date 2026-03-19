@@ -48,11 +48,17 @@ React.useEffect(() => {
   }).catch(console.error);
 }, [loaded, owned, activeBackground, activeButtonSkin]);
 
-  function buy(item) {
-    if (owned.includes(item.id) || score < item.cost) return;
-    setScore(prev => prev - item.cost);
-    setOwned(prev => [...prev, item.id]);
-  }
+async function buy(item) {
+  if (owned.includes(item.id) || score < item.cost) return;
+  const newScore = score - item.cost;
+  setScore(newScore);
+  setOwned(prev => [...prev, item.id]);
+  await fetch('/api/score', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ score: newScore }),
+  });
+}
 
   function resetBackground() {
     setActiveBackground(null);

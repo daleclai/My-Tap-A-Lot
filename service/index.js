@@ -116,7 +116,23 @@ app.get('/api/score', verifyAuth, (req, res) => {
   res.send({ score: req.user.score });
 });
 
+app.get('/api/inventory/state', verifyAuth, async (req, res) => {
+  res.send({
+    inventory: req.user.inventory || [],
+    activeBackground: req.user.activeBackground || null,
+    activeButtonSkin: req.user.activeButtonSkin || null,
+  });
+});
 
+app.post('/api/inventory/state', verifyAuth, async (req, res) => {
+  const { owned, activeBackground, activeButtonSkin } = req.body;
+  await updateUser(req.user.email, {
+    inventory: owned || [],
+    activeBackground: activeBackground || null,
+    activeButtonSkin: activeButtonSkin || null,
+  });
+  res.send({ ok: true });
+});
 
 app.post('/api/score', verifyAuth, async (req, res) => {
   const score = Number(req.body.score);

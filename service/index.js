@@ -115,24 +115,26 @@ app.get('/api/score', verifyAuth, (req, res) => {
   res.send({ score: req.user.score });
 });
 
-app.post('/api/score', verifyAuth, (req, res) => {
+
+
+app.post('/api/score', verifyAuth, async (req, res) => {
   req.user.score = Number(req.body.score);
-  res.send({ score: req.user.score });
+  await updateUser(req.user.email, { score });
+  res.send({ score });
 });
 
-app.get('/api/leaderboard', (_req, res) => {
-  const top10 = users
-    .map((u) => ({ email: u.email, score: u.score }))
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 10);
+
+
+app.get('/api/leaderboard', async (_req, res) => {
+  const top10 = await getLeaderboard();
   res.send(top10);
 });
 
 app.get('/api/quote', async (_req, res) => {
   try {
-    const response = await fetch('https://api.adviceslip.com/advice');
+    const response = await fetch('https://v2.jokeapi.dev/joke/Any?blacklistFlags=nsfw,racist,sexist,explicit,religious,political&type=single');
     const data = await response.json();
-    res.send({ quote: data.slip.advice });
+    res.send({ quote: data.joke });
   } catch {
     res.send({ quote: 'Keep tapping!' });
   }

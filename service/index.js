@@ -55,6 +55,16 @@ async function getLeaderboard() {
     .toArray();
 }
 
+(async () => {
+  try {
+    await db.command({ ping: 1 });
+    console.log('DB connection to ${config.database}');
+  } catch (ex) {
+    console.error('DB connection failed: ${ex.message}');
+    process.exit(1);
+  } 
+})();
+
 app.post('/api/auth/create', async (req, res) => {
   const { email, password } = req.body;
  
@@ -68,15 +78,17 @@ app.post('/api/auth/create', async (req, res) => {
     token: uuid.v4(),
     score: 0,
     inventory: [],  
+    activeBackground: null,
+    activeButtonSkin: null,
   };
  
-  users.push(user);
+  await createUser(user);
   res.cookie(authCookie, user.token, { sameSite: 'strict' });
   res.send({ email: user.email });
 });
 
 app.post('/api/auth/login', async (req, res) => {
-  const user = users.find(u => u.email === req.body.email);
+  const user = await getUser(req.body.email);
 
   if (user && await bcrypt.compare(req.body.password, user.password)) {
     user.token = uuid.v4();
@@ -87,9 +99,9 @@ app.post('/api/auth/login', async (req, res) => {
   }
 });
 
-app.delete('/api/auth/logout', (req, res) => {
-  const user = users.find((u) => u.token === req.cookies[authCookie]);
-  if (user) user.token = null;
+app.delete('/api/auth/logout', async (req, res) => {
+  const user = await getUserByToken(req.cookies[authCookie]);
+  if (user) await updateUser(user.email, { token: null });
   res.clearCookie(authCookie);
   res.status(204).end();
 });

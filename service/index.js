@@ -5,9 +5,9 @@ const uuid = require('uuid');
 const config = require('./dbConfig');
 const { MongoClient } = require('mongodb');
 
-const url = 'mongodb+srv://${config.username}:${config.password}@${config.cluster}/${config.database}?retryWrites=true&w=majority';
+const url = `mongodb+srv://${config.username}:${config.password}@${config.cluster}/${config.database}?retryWrites=true&w=majority`;
 
-const client = new MongoClient(config.url);
+const client = new MongoClient(url);
 const db = client.db(config.database);
 
 const app = express();
@@ -43,8 +43,8 @@ async function createUser(user) {
   return db.collection('users').insertOne(user);
 }
 
-async function updateUser(email, token) {
-  return db.collection('users').updateOne({ email }, { $set: { token } });
+async function updateUser(email, fields) {
+  return db.collection('users').updateOne({ email }, { $set: fields });
 }
 
 async function getLeaderboard() {
@@ -58,9 +58,9 @@ async function getLeaderboard() {
 (async () => {
   try {
     await db.command({ ping: 1 });
-    console.log('DB connection to ${config.database}');
+    console.log(`DB connection to ${config.database}`);
   } catch (ex) {
-    console.error('DB connection failed: ${ex.message}');
+    console.error(`DB connection failed: ${ex.message}`);
     process.exit(1);
   } 
 })();
@@ -91,8 +91,9 @@ app.post('/api/auth/login', async (req, res) => {
   const user = await getUser(req.body.email);
 
   if (user && await bcrypt.compare(req.body.password, user.password)) {
-    user.token = uuid.v4();
-    res.cookie(authCookie, user.token);
+    const token = uuid.v4();
+    await updateUser(user.email, { token });
+    res.cookie(authCookie, token, { sameSite: 'strict' });
     res.send({ email: user.email });
   } else {
     res.status(401).send({ msg: "Unauthorized" });
@@ -118,7 +119,7 @@ app.get('/api/score', verifyAuth, (req, res) => {
 
 
 app.post('/api/score', verifyAuth, async (req, res) => {
-  req.user.score = Number(req.body.score);
+  const score = Number(req.body.score);
   await updateUser(req.user.email, { score });
   res.send({ score });
 });

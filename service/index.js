@@ -29,12 +29,36 @@ async function verifyAuth(req, res, next) {
     res.status(401).send({ msg: 'Unauthorized' });
   }
 }
- 
+
+
+async function getUser(email) {
+  return db.collection('users').findOne({ email });
+}
+
+async function getUserByToken(token) {
+  return db.collection('users').findOne({ token });
+}
+
+async function createUser(user) {
+  return db.collection('users').insertOne(user);
+}
+
+async function updateUser(email, token) {
+  return db.collection('users').updateOne({ email }, { $set: { token } });
+}
+
+async function getLeaderboard() {
+  return db.collection('users')
+    .find({}, { projection: { email: 1, score: 1 } })
+    .sort({ score: -1 })
+    .limit(10)
+    .toArray();
+}
 
 app.post('/api/auth/create', async (req, res) => {
   const { email, password } = req.body;
  
-  if (users.find((u) => u.email === email)) {
+  if (await getUser(email)) {
     return res.status(409).send({ msg: 'User already exists' });
   }
  

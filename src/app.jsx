@@ -95,6 +95,7 @@ async function logout() {
               setScore={setScore}
               activeBackground={activeBackground}
               activeButtonSkin={activeButtonSkin}
+              userName={userName}
             />
           }
         />

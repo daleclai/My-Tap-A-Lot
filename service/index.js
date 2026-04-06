@@ -13,6 +13,9 @@ const db = client.db(config.database);
 const app = express();
 const port = process.argv.length > 2 ? process.argv[2] : 4000;
 
+const http = require('http');
+const { WebSocketServer } = require('ws');
+
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.static('public'));
@@ -157,7 +160,25 @@ app.get('/api/quote', async (_req, res) => {
   }
 });
 
+const server = http.createServer(app);
+const wss = new WebSocketServer({ noServer: true });
 
-app.listen(port, () => {
+server.on('upgrade', (req, socket, head) => {
+  wss.handleUpgrade(req, socket, head, (ws) => {
+    wss.emit('connection', ws, req);
+  });
+});
+
+wss.on('connection', (ws) => {
+  ws.on('message', (message) => {
+    wss.clients.forEach((client) => {
+      if (client !== ws && client.readyState === 1) {
+        client.send(message);
+      }
+    });
+  });
+});
+
+server.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });

@@ -21,7 +21,7 @@ app.use(cookieParser());
 app.use(express.static('public'));
 
 
-const authCookie = "token";
+const authCookie = "auth_token";
 
 async function verifyAuth(req, res, next) {
   const user = await getUserByToken(req.cookies[authCookie]);
@@ -39,6 +39,7 @@ async function getUser(email) {
 }
 
 async function getUserByToken(token) {
+  if (!token) return null;
   return db.collection('users').findOne({ token });
 }
 

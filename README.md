@@ -127,9 +127,9 @@ For this deliverable I did the following. I checked the box `[x]` and added a de
 
 For this deliverable I did the following. I checked the box `[x]` and added a description for things I completed.
 
-- [ ] **Backend listens for WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Frontend makes WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **Data sent over WebSocket connection** - I did not complete this part of the deliverable.
-- [ ] **WebSocket data displayed** - I did not complete this part of the deliverable.
-- [ ] **Application is fully functional** - I did not complete this part of the deliverable.
+- [x] **Backend listens for WebSocket connection** - updated index.js to include ws.
+- [x] **Frontend makes WebSocket connection** - once user gets a score divisible by 100, it shows a message to all user.
+- [x] **Data sent over WebSocket connection** 
+- [x] **WebSocket data displayed**
+- [x] **Application is fully functional**
 >>>>>>> 34c270209bca0337593fa7dc5a00a25c65baa827

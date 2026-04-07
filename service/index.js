@@ -86,7 +86,11 @@ app.post('/api/auth/create', async (req, res) => {
   };
  
   await createUser(user);
-  res.cookie(authCookie, user.token, { sameSite: 'strict' });
+  res.cookie(authCookie, user.token, {
+     sameSite: 'strict',
+     httpOnly: true,
+     secure: true,
+     });
   res.send({ email: user.email });
 });
 
@@ -96,7 +100,11 @@ app.post('/api/auth/login', async (req, res) => {
   if (user && await bcrypt.compare(req.body.password, user.password)) {
     const token = uuid.v4();
     await updateUser(user.email, { token });
-    res.cookie(authCookie, token, { sameSite: 'strict' });
+    res.cookie(authCookie, token, { 
+      sameSite: 'strict',
+      httpOnly: true,
+      secure: true,
+     });
     res.send({ email: user.email });
   } else {
     res.status(401).send({ msg: "Unauthorized" });
